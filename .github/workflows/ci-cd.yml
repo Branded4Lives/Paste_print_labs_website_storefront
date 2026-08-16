@@ -42,7 +42,11 @@ jobs:
         run: npm run lint
 
       - name: Build
-        run: npm run build
+        env:
+          VITE_SHOPIFY_STORE_DOMAIN: pastel-print-labs-xdgqiy21.myshopify.com
+          VITE_SHOPIFY_STOREFRONT_TOKEN: ${{ secrets.VITE_SHOPIFY_STOREFRONT_TOKEN }}
+          VITE_SHOPIFY_API_VERSION: 2026-07
+        run: npm run build -- --mode github-pages
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v7
